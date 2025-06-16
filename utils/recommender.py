@@ -19,8 +19,11 @@ def load_lullaby_dataset():
     Load lullaby songs CSV, skipping malformed lines.
     Ensures 'spotify_link' column exists for downstream processing.
     """
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, "..", "data", "lullaby_songs.csv")
     df = pd.read_csv(
-        "data/lullaby_songs.csv",
+        csv_path,
         on_bad_lines="skip"
     )
     # Ensure column names are consistent
