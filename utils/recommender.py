@@ -20,10 +20,14 @@ def load_lullaby_dataset():
     Ensures 'spotify_link' column exists for downstream processing.
     """
     import os
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base_dir, "..", "data", "lullaby_songs.csv")
-    if not os.path.exists(csv_path):
-        raise FileNotFoundError(f"Lullaby songs CSV file not found at path: {csv_path}")
+    cwd_path = os.path.join(os.getcwd(), "data", "lullaby_songs.csv")
+    if os.path.exists(cwd_path):
+        csv_path = cwd_path
+    else:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(base_dir, "..", "data", "lullaby_songs.csv")
+        if not os.path.exists(csv_path):
+            raise FileNotFoundError(f"Lullaby songs CSV file not found at paths: {cwd_path} or {csv_path}")
     df = pd.read_csv(
         csv_path,
         on_bad_lines="skip"
