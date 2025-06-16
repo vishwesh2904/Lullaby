@@ -22,6 +22,8 @@ def load_lullaby_dataset():
     import os
     base_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(base_dir, "..", "data", "lullaby_songs.csv")
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"Lullaby songs CSV file not found at path: {csv_path}")
     df = pd.read_csv(
         csv_path,
         on_bad_lines="skip"
