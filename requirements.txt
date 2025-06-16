@@ -7,3 +7,7 @@ seaborn
 joblib
 spotipy
 openpyxl
+python-dotenv
+xgboost
+imbalanced-learn
+requests

@@ -705,7 +705,7 @@ import utils.helper
 def show_dashboard(username):
     st.markdown("# 📊 Sleep Analytics Dashboard")
     
-    data_path = "data/insomnia_synthetic_clean.csv"
+    data_path = "data/insomnia_synthetic.csv"
     if not os.path.exists(data_path):
         st.warning("📂 No data available yet. Complete the questionnaire first!")
         return
