@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lullaby-Based Insomnia Detection and Sleep Aid System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        .presentation-container {
+            max-width: 900px;
+            margin: 20px auto;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+        .slide {
+            position: relative;
+            background: #fff;
+            height: 500px;
+            padding: 40px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #3a6186, #89253e);
+            color: white;
+        }
+        .blue-bg {
+            background: linear-gradient(135deg, #3a6186, #4568dc);
+            color: white;
+        }
+        .purple-bg {
+            background: linear-gradient(135deg, #834d9b, #d04ed6);
+            color: white;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        ul, ol {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        .slide-number {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .authors {
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+        .department {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .supervisor {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .content-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        .icon {
+            font-size: 2em;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .timeline-table th, .timeline-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .timeline-table th {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .text-center {
+            text-align: center;
+        }
+        .diagram {
+            width: 75%;
+            margin: 15px auto;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .diagram-box {
+            background: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+        .arrow {
+            position: absolute;
+            left: 45%;
+            bottom: -30px;
+            font-size: 24px;
+        }
+        .two-column {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .column {
+            width: 48%;
+        }
+        .model-metrics {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 15px;
+            left: 40px;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+        .title-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            right: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 10px;
+        }
+        .moon-icon {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 3em;
+            opacity: 0.8;
+        }
+        .small-icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide gradient-bg">
+            <div class="moon-icon">🌙</div>
+            <h1>Lullaby-Based Insomnia Detection and Sleep Aid System</h1>
+            <div class="subtitle">An AI-driven solution for improving sleep quality</div>
+            
+            <div class="authors"><b>By:</b> Harsh Tekriwal, Vishwesh Pandey, Rounak Kumar, Aniket Poddar, Himanshu Chaubey</div>
+            <div class="department"><b>Department:</b> CSE-DS</div>
+            <div class="supervisor"><b>Supervisor:</b> Prof. Dr. Sudipta Chakraborty</div>
+            
+            <div class="title-footer">
+                <span>Innovative AI Solution for Better Sleep</span>
+            </div>
+            <div class="slide-number">1/9</div>
+        </div>
+
+        <!-- Slide 2: Problem Statement & Motivation -->
+        <div class="slide blue-bg">
+            <h2>Problem Statement & Motivation</h2>
+            
+            <div class="content-box">
+                <ul>
+                    <li><span class="small-icon">🛌</span> Insomnia is prevalent and under-addressed.</li>
+                    <li><span class="small-icon">💊</span> Solutions like medication may have side effects.</li>
+                    <li><span class="small-icon">🎵</span> Personalized music therapy (lullabies) has scientific merit.</li>
+                    <li><span class="small-icon">🤖</span> We aim to create an AI-powered tool that detects insomnia and recommends appropriate lullabies.</li>
+                </ul>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">2/9</div>
+        </div>
+
+        <!-- Slide 3: Objectives -->
+        <div class="slide purple-bg">
+            <h2>Objectives</h2>
+            
+            <div class="content-box">
+                <ol>
+                    <li>Create a digital survey for insomnia assessment.</li>
+                    <li>Train a model to classify insomnia levels.</li>
+                    <li>Recommend lullabies based on severity.</li>
+                    <li>Collect user feedback to refine the experience.</li>
+                    <li>Evaluate and deploy the system for real-world use.</li>
+                </ol>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">3/9</div>
+        </div>
+
+        <!-- Slide 4: Dataset and Lullaby Curation -->
+        <div class="slide blue-bg">
+            <h2>Dataset and Lullaby Curation</h2>
+            
+            <div class="content-box">
+                <ul>
+                    <li><span class="small-icon">📊</span> Synthetic insomnia data generated using domain logic.</li>
+                    <li><span class="small-icon">❓</span> 7-question format based on clinical guidelines.</li>
+                </ul>
+                
+                <h3><span class="small-icon">🎶</span> Lullaby Dataset Manually Curated:</h3>
+                <ul>
+                    <li><b>Criteria:</b> Instrument type, tempo, genre, emotion.</li>
+                    <li><b>Sources:</b> Royalty-free platforms (e.g., FreeSound, Pixabay).</li>
+                    <li><b>Mapped to insomnia levels:</b> No, Mild, Moderate, Severe</li>
+                </ul>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">4/9</div>
+        </div>
+
+        <!-- Slide 5: System Architecture -->
+        <div class="slide purple-bg">
+            <h2>System Architecture</h2>
+            
+            <div class="diagram">
+                <div class="diagram-box">
+                    <b>Input:</b> Questionnaire responses
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="diagram-box">
+                    <b>Processing:</b> Trained ML model (Random Forest)
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="diagram-box">
+                    <b>Output:</b> Insomnia level + Lullaby recommendation
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="diagram-box">
+                    <b>Feedback:</b> Collected and saved
+                    <div class="arrow">↓</div>
+                </div>
+                <div class="diagram-box">
+                    <b>Evaluation:</b> Model evaluation & visualization
+                </div>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">5/9</div>
+        </div>
+
+        <!-- Slide 6: Implementation - Streamlit App -->
+        <div class="slide blue-bg">
+            <h2>Implementation - Streamlit App</h2>
+            
+            <div class="two-column">
+                <div class="column content-box">
+                    <h3>User Interface</h3>
+                    <ul>
+                        <li>Interactive sliders for question input</li>
+                        <li>Real-time prediction & lullaby recommendation</li>
+                        <li>Feedback form (Did it help? Rating, Comments)</li>
+                    </ul>
+                </div>
+                
+                <div class="column content-box">
+                    <h3>Developer Dashboard</h3>
+                    <ul>
+                        <li>Evaluation tab with metrics</li>
+                        <li>Accuracy visualization</li>
+                        <li>Confusion matrix display</li>
+                        <li>Data distribution charts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">6/9</div>
+        </div>
+
+        <!-- Slide 7: Model Development and Evaluation -->
+        <div class="slide purple-bg">
+            <h2>Model Development and Evaluation</h2>
+            
+            <div class="two-column">
+                <div class="column content-box">
+                    <h3>Algorithm & Approach</h3>
+                    <ul>
+                        <li>Random Forest Classifier</li>
+                        <li>Label encoding for multi-class classification</li>
+                        <li>Hyperparameter tuning</li>
+                    </ul>
+                </div>
+                
+                <div class="column">
+                    <div class="model-metrics">
+                        <h3>Expected Metrics</h3>
+                        <ul>
+                            <li>Accuracy: ~92%</li>
+                            <li>F1-Score: High across all classes</li>
+                            <li>Confusion matrix visualization</li>
+                            <li>Detailed classification report</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">7/10</div>
+        </div>
+
+        <!-- Slide 8: Feedback Insights -->
+        <div class="slide blue-bg">
+            <h2>Feedback Insights</h2>
+            
+            <div class="content-box">
+                <h3><span class="small-icon">📝</span> Questions Asked Post-Song:</h3>
+                <ul>
+                    <li>Did you feel relaxed?</li>
+                    <li>Did it help you sleep?</li>
+                    <li>Rating (1–5), Comments</li>
+                </ul>
+                
+                <div class="two-column" style="margin-top: 30px;">
+                    <div class="column content-box">
+                        <h3><span class="small-icon">💾</span> Data Storage</h3>
+                        <ul>
+                            <li>Stored in <code>feedback.csv</code> for analysis</li>
+                            <li>Timestamp and user ID tracked</li>
+                            <li>Connects to song recommendations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column content-box">
+                        <h3><span class="small-icon">📈</span> Continuous Improvement</h3>
+                        <ul>
+                            <li>Helps refine future lullaby recommendations</li>
+                            <li>Identifies patterns in user preferences</li>
+                            <li>Enables personalized experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">8/10</div>
+        </div>
+
+        <!-- Slide 9: Project Timeline -->
+        <div class="slide blue-bg">
+            <h2>Project Timeline (4 Months)</h2>
+            
+            <table class="timeline-table">
+                <tr>
+                    <th>Month</th>
+                    <th>Activities</th>
+                </tr>
+                <tr>
+                    <td><b>Month 1</b></td>
+                    <td>Problem research, questionnaire design, insomnia criteria finalization</td>
+                </tr>
+                <tr>
+                    <td><b>Month 2</b></td>
+                    <td>Dataset generation, lullaby song collection & curation, initial model training</td>
+                </tr>
+                <tr>
+                    <td><b>Month 3</b></td>
+                    <td>Streamlit app development, integration with model, testing, feedback system</td>
+                </tr>
+                <tr>
+                    <td><b>Month 4</b></td>
+                    <td>Evaluation metrics, model tuning, report writing, final deployment & presentation</td>
+                </tr>
+            </table>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">8/9</div>
+        </div>
+
+        <!-- Slide 9: Conclusion & Future Scope -->
+        <div class="slide gradient-bg">
+            <h2>Conclusion & Future Scope</h2>
+            
+            <div class="content-box">
+                <h3>Achievements</h3>
+                <ul>
+                    <li>Achieved a working AI-based lullaby recommendation system.</li>
+                    <li>Successfully integrated model + app + feedback.</li>
+                </ul>
+                
+                <h3>Future Scope</h3>
+                <ul>
+                    <li><span class="small-icon">👥</span> Larger real-user dataset</li>
+                    <li><span class="small-icon">🎹</span> AI-generated lullabies</li>
+                    <li><span class="small-icon">⌚</span> Integration with sleep-tracking wearables</li>
+                    <li><span class="small-icon">📱</span> Mobile app development</li>
+                </ul>
+            </div>
+            
+            <div class="footer">Lullaby-Based Insomnia Detection and Sleep Aid System</div>
+            <div class="slide-number">9/9</div>
+        </div>
+    </div>
+</body>
+</html>
