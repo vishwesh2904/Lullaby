@@ -1,0 +1,13 @@
+{
+  "tests/test_app_part2.py::TestAppIntegration": true,
+  "tests/test_app_ui.py::test_navigation_and_feedback_form": true,
+  "tests/test_app.py::TestAppIntegration::test_predict_and_recommend_flow": true,
+  "tests/test_app_part1.py::TestAppIntegration::test_predict_and_recommend_flow": true,
+  "tests/test_model_loading_and_prediction.py::TestModelLoadingAndPrediction::test_prediction_and_recommendation": true,
+  "tests/e2e_test_streamlit_ui.py": true,
+  "tests/test_feedback_and_insomnia.py::TestFeedbackAndInsomnia::test_update_insomnia_synthetic_appends_and_retrains": true,
+  "tests/test_helper.py::TestHelperFunctions::test_generate_data_creates_file_and_correct_shape": true,
+  "tests/test_recommender.py::TestPredictInsomniaLevel::test_all_zero_inversely_related_features": true,
+  "tests/test_recommender.py::TestPredictInsomniaLevel::test_typical_input": true,
+  "tests/test_train_model.py::TestTrainModel": true
+}
