@@ -601,6 +601,7 @@ if 'logged_in' not in st.session_state:
 # --- Authentication ---
 if not st.session_state.logged_in:
     st.sidebar.markdown("## 🔐 Authentication")
+    st.markdown("<h1 style='text-align:center; color:#764ba2; font-weight: 800; margin: 0; padding: 40px 0 10px 0;'>Lullaby-Based Music Recommendation System for Insomnia</h1>", unsafe_allow_html=True)
     option = st.sidebar.radio("Choose Option", ("Login", "Signup"), key="auth_radio")
 
     if option == "Signup":
@@ -758,16 +759,22 @@ def show_dashboard(username):
 
     st.markdown("---")
     
-    # Charts Section
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("### 🎯 Insomnia Level Distribution")
-        if "Insomnia Level" in df.columns:
-            chart_data = df["Insomnia Level"].value_counts()
-            st.bar_chart(chart_data)
-        else:
-            st.info("No insomnia level data available")
+    st.markdown("### 🎯 Insomnia Level Distribution")
+
+    insomnia_counts = df["Insomnia Level"].value_counts().sort_index()
+    fig2, ax2 = plt.subplots(figsize=(12, 6))
+    sns.barplot(x=insomnia_counts.index, y=insomnia_counts.values, palette="viridis", ax=ax2)
+    ax2.set_xlabel("Insomnia Level")
+    ax2.set_ylabel("Count")
+    ax2.set_title("Distribution of Insomnia Levels")
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    st.pyplot(fig2)
+
+   
+   
+    st.markdown("---")
+   
 
     # Correlation Heatmap
     st.markdown("### 🔥 Feature Correlation Heatmap")
@@ -810,6 +817,38 @@ def show_dashboard(username):
     except Exception as e:
         st.error(f"Error generating correlation heatmap: {e}")
 
+# --- New Section: Song Recommendation Statistics ---
+    st.markdown("---")
+    st.markdown("### 🎵 Song Recommendation Statistics")
+
+    feedback_file = "data/feedback.csv"
+    if not os.path.exists(feedback_file):
+        st.info("No feedback data available for song recommendation statistics.")
+        return
+
+    feedback_df = pd.read_csv(feedback_file, on_bad_lines='skip')
+
+    if "Recommended Song" not in feedback_df.columns or "Rating" not in feedback_df.columns:
+        st.info("Feedback data does not contain required columns for statistics.")
+        return
+
+    # Most recommended songs count
+    # song_counts = feedback_df["Recommended Song"].value_counts().head(10)
+    # st.markdown("#### Most Recommended Songs")
+    # st.bar_chart(song_counts)
+
+    # Average ratings for songs
+    avg_ratings = feedback_df.groupby("Recommended Song")["Rating"].mean().sort_values(ascending=False).head(10)
+    st.markdown("#### Top Rated Songs")
+    # More colorful and attractive bar chart for Top Rated Songs
+    fig, ax = plt.subplots(figsize=(14, 6))
+    avg_ratings.plot(kind='bar', ax=ax, color=sns.color_palette("viridis", len(avg_ratings)))
+    ax.set_ylabel("Average Rating")
+    ax.set_xlabel("Song")
+    ax.set_title("Top Rated Songs")
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    st.pyplot(fig)
 
 # --- Feedback Form ---
 def collect_feedback(insomnia_level, song_label, user_input):
@@ -873,9 +912,9 @@ def main():
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: calc(80vh - 60px);
+                height: calc(75vh - 60px);
                 width: 100%;
-                margin-top: 100px;
+                margin-top: 40px;
                 font-size: 1.5rem;
                 font-weight: 600;
                 color: #f59e0b;
@@ -978,14 +1017,14 @@ def main():
             padding: 8px 12px; border-radius: 10px; color: white; font-weight: 600;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 15px; box-shadow: 1px 1px 8px rgba(0,0,0,0.12);
-            max-width: 900px; margin-bottom: 10px; display: flex; align-items: center; justify-content: flex-start;
+            max-width: 1000px; margin-bottom: 10px; display: flex; align-items: center; justify-content: flex-start;
             width: 100%;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         ">
-            <span style="margin: 0 10px 0 0;">Rate symptoms:</span>
-            <div style="display: flex; gap: 18px;">
+            <span style="margin: 4 20px 4 4;">Rate symptoms:</span>
+            <div style="display: flex; gap: 30px;">
                 <div style="text-align:center;">
                     <div style="font-weight:700;">0</div>
                     <div style="font-size:12px;">Negligible</div>

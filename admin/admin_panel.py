@@ -18,16 +18,8 @@ def show_admin_panel():
     synthetic_data_file = "data/insomnia_synthetic.csv"
 
     # --- Feedback Section ---
-    st.header("📋 User Feedback")
     if os.path.exists(feedback_file):
         df = pd.read_csv(feedback_file, on_bad_lines='skip', engine='python')
-
-        st.subheader("Preview")
-        st.dataframe(df, use_container_width=True)
-
-        st.markdown(f"**Total Entries:** {len(df)}")
-        if "Rating" in df.columns:
-            st.markdown(f"**Average Rating:** {df['Rating'].mean():.2f} ⭐")
 
         # Filter by Insomnia Level
         st.subheader("🔍 Filter Feedback")
@@ -49,16 +41,35 @@ def show_admin_panel():
         st.warning("No feedback data available.")
 
 
-    # --- Retrain Model Section ---
-    st.header("🔄 Model Retraining")
-    if st.button("Retrain Model"):
-        with st.spinner("Retraining..."):
-            try:
-                from utils.helper import retrain_model_with_feedback
-                accuracy = retrain_model_with_feedback()
-                st.success(f"✅ Model retrained successfully with accuracy: **{accuracy * 100:.2f}%**")
-            except Exception as e:
-                st.error(f"❌ Error retraining model: {e}")
+      # --- New Section: Average Feature Values by Insomnia Level ---
+    st.markdown("---")
+    st.markdown("### 📊 Average Feature Values by Insomnia Level")
+
+    try:
+        cleaned_data_file = "data/insomnia_synthetic_cleaned.csv"
+        data_file_to_use = cleaned_data_file if os.path.exists(cleaned_data_file) else synthetic_data_file
+
+        # Force reload the latest synthetic insomnia data to reflect new dataset
+        df = pd.read_csv(synthetic_data_file, on_bad_lines='skip', engine='python')
+
+        # Clean labels: convert to string, strip whitespace, drop rows with missing, 'nan', or empty labels
+        df['Insomnia Level'] = df['Insomnia Level'].astype(str).str.strip()
+        df = df[~df['Insomnia Level'].isin(['', 'nan', 'NaN', 'None', 'none'])]
+        df = df.dropna(subset=['Insomnia Level'])
+
+        # Validate required data
+        if not set(FEATURE_COLS).issubset(df.columns):
+            st.error("Required features missing from dataset.")
+            return
+
+        # Group by Insomnia Level and calculate mean of features
+        grouped_avg = df.groupby("Insomnia Level")[FEATURE_COLS].mean()
+
+        # Display the grouped average table
+        st.dataframe(grouped_avg)
+
+    except Exception as e:
+        st.error(f"❌ Could not compute average feature values: {e}")
 
     # --- Accuracy Display Section ---
     st.header("📏 Current Model Accuracy")
